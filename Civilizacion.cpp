@@ -85,4 +85,7 @@ void Civilizacion::aumentarCuarteles(int cantidad){
 void Civilizacion::aumentarEstablos(int cantidad){
 	this->numeroEstablos += cantidad;
 }
+void Civilizacion::aumentarHabitantes(int cantidad){
+	this->numeroHabitantes += cantidad;
+}
 

@@ -19,6 +19,7 @@ int u; // Variable que nos ayudara a manejar la civilizacion que se selecciono d
 bool civilizacionCreada(string);
 void escogerCivilizacion();
 void menuJugar();
+void Resumen();
 
 int main() {
 	cout << "BIENVENIDO a AGE OF EMPIRES!" << endl << endl;
@@ -132,7 +133,7 @@ void menuJugar(){
 						cout << "Se esta creando un aldeano..." << endl;
 						civilizaciones[u]->restarAlimento(25);
 					} else {
-						cout << "No hay suficientes recursos para crear un Aldeano...";
+						cout << "No hay suficientes recursos para crear un Aldeano..." << endl;
 					}
 						
 				} else {
@@ -142,68 +143,90 @@ void menuJugar(){
 				break;
 			}
 			case 2:{
-				if (civilizaciones[u]->getNumeroHabitantes() <= capacidadMaxima){
-					
-					if(civilizaciones[u]->getAlimento() >= 75 && civilizaciones[u]->getOro() >= 20 && civilizaciones[u]->getMadera() >= 5){
-						pendientes.push_back(new Jinete());
-						cout << "Se esta creando un jinete..." << endl;
-						civilizaciones[u]->restarAlimento(75);
-						civilizaciones[u]->restarOro(20);
-						civilizaciones[u]->restarMadera(5);
+				
+				if (civilizaciones[u]->getNumeroEstablos() >= 1){
+					if (civilizaciones[u]->getNumeroHabitantes() <= capacidadMaxima){
 						
+						if(civilizaciones[u]->getAlimento() >= 75 && civilizaciones[u]->getOro() >= 20 && civilizaciones[u]->getMadera() >= 5){
+							pendientes.push_back(new Jinete());
+							cout << "Se esta creando un jinete..." << endl;
+							civilizaciones[u]->restarAlimento(75);
+							civilizaciones[u]->restarOro(20);
+							civilizaciones[u]->restarMadera(5);
+							
+						} else {
+							cout << "No hay suficientes recursos para crear un Jinete..." << endl;
+						}
+						
+							
 					} else {
-						cout << "No hay suficientes recursos para crear un Jinete...";
+						cout << "Ya ha alcanzado la maxima capacidad de habitantes..." << endl;
 					}
 					
-						
 				} else {
-					cout << "Ya ha alcanzado la maxima capacidad de habitantes..." << endl;
+					cout << "Necesita almenos 1 Establo para crear Jinetes..." << endl;
 				}
+				
+					
 				break;
 			}
 			case 3:{
-				if (civilizaciones[u]->getNumeroHabitantes() <= capacidadMaxima){
-					
-					if(civilizaciones[u]->getAlimento() >= 50 && civilizaciones[u]->getOro() >= 10 && civilizaciones[u]->getMadera() >= 10){
-						pendientes.push_back(new Arquero());
-						cout << "Se esta creando un Arquero..." << endl;
-						civilizaciones[u]->restarAlimento(50);
-						civilizaciones[u]->restarOro(10);
-						civilizaciones[u]->restarMadera(10);
+				
+				if (civilizaciones[u]->getNumeroCuarteles() >= 1){
+					if (civilizaciones[u]->getNumeroHabitantes() <= capacidadMaxima){
 						
+						if(civilizaciones[u]->getAlimento() >= 50 && civilizaciones[u]->getOro() >= 10 && civilizaciones[u]->getMadera() >= 10){
+							pendientes.push_back(new Arquero());
+							cout << "Se esta creando un Arquero..." << endl;
+							civilizaciones[u]->restarAlimento(50);
+							civilizaciones[u]->restarOro(10);
+							civilizaciones[u]->restarMadera(10);
+							
+						} else {
+							cout << "No hay suficientes recursos para crear un Arquero..." << endl;
+						}
+						
+							
 					} else {
-						cout << "No hay suficientes recursos para crear un Arquero...";
+						cout << "Ya ha alcanzado la maxima capacidad de habitantes..." << endl;
 					}
-					
-						
 				} else {
-					cout << "Ya ha alcanzado la maxima capacidad de habitantes..." << endl;
+					cout << "Necesita almenos 1 Cuartel para crear Arqueros..." << endl;
 				}
+									
 				break;
 			}
 			case 4:{
-				if (civilizaciones[u]->getNumeroHabitantes() <= capacidadMaxima){
-					
-					if(civilizaciones[u]->getAlimento() >= 50 && civilizaciones[u]->getOro() >= 15 && civilizaciones[u]->getMadera() >= 5){
-						pendientes.push_back(new Caballero());
-						cout << "Se esta creando un Caballero..." << endl;
-						civilizaciones[u]->restarAlimento(50);
-						civilizaciones[u]->restarOro(15);
-						civilizaciones[u]->restarMadera(5);
+				
+				if (civilizaciones[u]->getNumeroCuarteles() >= 1){
+					if (civilizaciones[u]->getNumeroHabitantes() <= capacidadMaxima){
 						
+						if(civilizaciones[u]->getAlimento() >= 50 && civilizaciones[u]->getOro() >= 15 && civilizaciones[u]->getMadera() >= 5){
+							pendientes.push_back(new Caballero());
+							cout << "Se esta creando un Caballero..." << endl;
+							civilizaciones[u]->restarAlimento(50);
+							civilizaciones[u]->restarOro(15);
+							civilizaciones[u]->restarMadera(5);
+							
+						} else {
+							cout << "No hay suficientes recursos para crear un Caballero..." << endl;
+						}
+						
+							
 					} else {
-						cout << "No hay suficientes recursos para crear un Caballero...";
+						cout << "Ya ha alcanzado la maxima capacidad de habitantes..." << endl;
 					}
-					
-						
 				} else {
-					cout << "Ya ha alcanzado la maxima capacidad de habitantes..." << endl;
+					cout << "Necesita almenos 1 Cuartel para crear Caballeros..." << endl;
 				}
+					
 				break;
 			}
 			case 5:{
 				if (civilizaciones[u]->getMadera() >= 50){
 					civilizaciones[u]->aumentarCasas(1);
+					civilizaciones[u]->restarMadera(50);
+					cout << "Se ha creado una Casa!" << endl;
 				} else {
 					cout << "No tiene suficientes recursos para crear una Casa..." << endl;
 				}
@@ -212,6 +235,9 @@ void menuJugar(){
 			case 6:{
 				if (civilizaciones[u]->getMadera() >= 200 && civilizaciones[u]->getOro() >= 50){
 					civilizaciones[u]->aumentarCuarteles(1);
+					civilizaciones[u]->restarMadera(200);
+					civilizaciones[u]->restarOro(50);
+					cout << "Se ha creado un Cuartel!" << endl;
 				} else {
 					cout << "No tiene suficientes recursos para crear un Cuartel..." << endl;
 				}
@@ -220,6 +246,9 @@ void menuJugar(){
 			case 7:{
 				if (civilizaciones[u]->getMadera() >= 150 && civilizaciones[u]->getOro() >= 50){
 					civilizaciones[u]->aumentarEstablos(1);
+					civilizaciones[u]->restarMadera(150);
+					civilizaciones[u]->restarOro(50);
+					cout << "Se ha creado un Establo!" << endl;
 				} else {
 					cout << "No tiene suficientes recursos para crear un Establo..." << endl;
 				}
@@ -247,10 +276,11 @@ void menuJugar(){
 									if (pendientes[i]->getHoras() == 4){
 										civilizaciones[u]->getHabitantes().push_back(pendientes[i]);
 										cout << "Se ha añadido un Caballero!" << endl;
-										delete pendientes[i];
+										civilizaciones[u]->aumentarHabitantes(1);
+										//delete pendientes[i];
 									}
 									
-									delete ptrArquero;
+									
 								}
 								
 							} else {
@@ -258,10 +288,11 @@ void menuJugar(){
 								if (pendientes[i]->getHoras() == 4){
 									civilizaciones[u]->getHabitantes().push_back(pendientes[i]);
 									cout << "Se ha añadido un arquero!" << endl;
-									delete pendientes[i];
+									civilizaciones[u]->aumentarHabitantes(1);
+									//delete pendientes[i];
 								}
 								
-								delete ptrArquero;
+								
 							}
 							
 						} else {
@@ -269,10 +300,11 @@ void menuJugar(){
 							if (pendientes[i]->getHoras() == 6){
 								civilizaciones[u]->getHabitantes().push_back(pendientes[i]);
 								cout << "Se ha añadido un jinete!" << endl;
-								delete pendientes[i];
+								civilizaciones[u]->aumentarHabitantes(1);
+								//delete pendientes[i];
 							}
 							
-							delete ptrJinete;
+							
 						}
 						
 					} else {
@@ -280,23 +312,27 @@ void menuJugar(){
 						if (pendientes[i]->getHoras() == 1){
 							civilizaciones[u]->getHabitantes().push_back(pendientes[i]);
 							cout << "Se ha añadido un aldeano!" << endl;
-							delete pendientes[i];
+							civilizaciones[u]->aumentarHabitantes(1);
+							//delete pendientes[i];
 						}
 					}
 					
-					delete ptrAldeano;
+					
 					
 				
 				}
 				
+				
 				for (int i = 0; i < civilizaciones[u]->getHabitantes().size(); i++){
-					Aldeano* ptrAldeano = dynamic_cast<Aldeano*>(pendientes[i]);
-					if (ptrAldeano != 0){
+					Aldeano* ptr = dynamic_cast<Aldeano*>(civilizaciones[u]->getHabitantes()[i]);
+					if (ptr != 0){
 						civilizaciones[u]->obtenerRecursos();
 					}
 					
-					delete ptrAldeano;
+					
 				}
+				
+				Resumen();
 				
 				break;
 			}
@@ -315,3 +351,12 @@ void menuJugar(){
 		}
 	}
 }
+
+void Resumen(){
+	cout << endl << "Numero de Habitantes: " << civilizaciones[u]->getNumeroHabitantes() << endl
+	<< "Capacidad Maxima de Habitantes: " << civilizaciones[u]->getNumeroCasas() * 5 << endl
+	<< "Cantidad de Madera: " << civilizaciones[u]->getMadera() << endl
+	<< "Cantidad de Oro: " << civilizaciones[u]->getOro() << endl
+	<< "Cantidad de Alimento: " << civilizaciones[u]->getAlimento() << endl;
+}
+

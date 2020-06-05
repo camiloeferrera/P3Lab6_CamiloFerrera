@@ -36,6 +36,7 @@ class Civilizacion
 		void aumentarCasas(int);
 		void aumentarCuarteles(int);
 		void aumentarEstablos(int);
+		void aumentarHabitantes(int);
 		
 		vector<Habitante*> getHabitantes();
 		
