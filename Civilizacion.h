@@ -19,6 +19,7 @@ class Civilizacion
 		Civilizacion(string);
 		~Civilizacion();
 		
+		string getNombre();
 		int getMadera();
 		int getOro();
 		int getAlimento();
@@ -26,6 +27,15 @@ class Civilizacion
 		int getNumeroCasas();
 		int getNumeroCuarteles();
 		int getNumeroEstablos();
+		
+		void obtenerRecursos();
+		void restarMadera(int);
+		void restarOro(int);
+		void restarAlimento(int);
+		
+		void aumentarCasas(int);
+		void aumentarCuarteles(int);
+		void aumentarEstablos(int);
 		
 		vector<Habitante*> getHabitantes();
 		

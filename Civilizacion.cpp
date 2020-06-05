@@ -27,6 +27,10 @@ Civilizacion::~Civilizacion()
 }
 
 
+string Civilizacion::getNombre(){
+	return this->nombre;
+}
+
 int Civilizacion::getMadera(){
 	return this->cantidadMadera;
 }
@@ -54,3 +58,31 @@ int Civilizacion::getNumeroEstablos(){
 vector<Habitante*> Civilizacion::getHabitantes(){
 	return this->habitantes;
 }
+
+void Civilizacion::obtenerRecursos(){
+	this->cantidadAlimento += 5;
+	this->cantidadMadera += 4;
+	this->cantidadOro += 3;
+}
+
+
+void Civilizacion::restarMadera(int cantidad){
+	this->cantidadMadera -= cantidad;
+}
+void Civilizacion::restarOro(int cantidad){
+	this->cantidadOro -= cantidad;
+}
+void Civilizacion::restarAlimento(int cantidad){
+	this->cantidadAlimento -= cantidad;
+}
+
+void Civilizacion::aumentarCasas(int cantidad){
+	this->numeroCasas += cantidad;
+}
+void Civilizacion::aumentarCuarteles(int cantidad){
+	this->numeroCuarteles += cantidad;
+}
+void Civilizacion::aumentarEstablos(int cantidad){
+	this->numeroEstablos += cantidad;
+}
+
