@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 
 #include "Civilizacion.h"
 #include "Habitante.h"
@@ -20,6 +21,7 @@ bool civilizacionCreada(string);
 void escogerCivilizacion();
 void menuJugar();
 void Resumen();
+void Guerra();
 
 int main() {
 	cout << "BIENVENIDO a AGE OF EMPIRES!" << endl << endl;
@@ -43,7 +45,7 @@ int main() {
 					cout << "Esta civilizacion ya esta creada..." << endl;
 				} else {
 					civilizaciones.push_back(new Civilizacion(nombre));
-					cout << "Civilizacion creada con exito!..." << endl;
+					cout << "Civilizacion creada con exito!" << endl;
 				}
 				
 				break;
@@ -254,7 +256,10 @@ void menuJugar(){
 				}
 				break;
 			}
-			
+			case 8:{
+				Guerra();
+				break;
+			}
 			case 9:{
 				for (int i = 0; i < pendientes.size(); i++){
 					Aldeano* ptrAldeano = dynamic_cast<Aldeano*>(pendientes[i]);
@@ -274,10 +279,11 @@ void menuJugar(){
 									
 									pendientes[i]->aumentarHoras();
 									if (pendientes[i]->getHoras() == 4){
-										civilizaciones[u]->getHabitantes().push_back(pendientes[i]);
+										civilizaciones[u]->agregarCaballero();
 										cout << "Se ha añadido un Caballero!" << endl;
 										civilizaciones[u]->aumentarHabitantes(1);
 										//delete pendientes[i];
+										pendientes.erase(pendientes.begin() + i);
 									}
 									
 									
@@ -286,10 +292,11 @@ void menuJugar(){
 							} else {
 								pendientes[i]->aumentarHoras();
 								if (pendientes[i]->getHoras() == 4){
-									civilizaciones[u]->getHabitantes().push_back(pendientes[i]);
-									cout << "Se ha añadido un arquero!" << endl;
+									civilizaciones[u]->agregarArquero();
+									cout << "Se ha agregado un Arquero!" << endl;
 									civilizaciones[u]->aumentarHabitantes(1);
 									//delete pendientes[i];
+									//pendientes.erase(pendientes.begin() + i);
 								}
 								
 								
@@ -298,10 +305,12 @@ void menuJugar(){
 						} else {
 							pendientes[i]->aumentarHoras();
 							if (pendientes[i]->getHoras() == 6){
-								civilizaciones[u]->getHabitantes().push_back(pendientes[i]);
-								cout << "Se ha añadido un jinete!" << endl;
+								civilizaciones[u]->agregarJinete();
+								cout << "Se ha agregado un Jinete!" << endl;
 								civilizaciones[u]->aumentarHabitantes(1);
+
 								//delete pendientes[i];
+								//pendientes.erase(pendientes.begin() + i);
 							}
 							
 							
@@ -310,10 +319,11 @@ void menuJugar(){
 					} else {
 						pendientes[i]->aumentarHoras();
 						if (pendientes[i]->getHoras() == 1){
-							civilizaciones[u]->getHabitantes().push_back(pendientes[i]);
-							cout << "Se ha añadido un aldeano!" << endl;
+							civilizaciones[u]->agregarAldeano();
+							cout << "Se ha agregado un aldeano!" << endl;
 							civilizaciones[u]->aumentarHabitantes(1);
 							//delete pendientes[i];
+							//pendientes.erase(pendientes.begin() + i);
 						}
 					}
 					
@@ -329,8 +339,9 @@ void menuJugar(){
 						civilizaciones[u]->obtenerRecursos();
 					}
 					
-					
+					 	
 				}
+				
 				
 				Resumen();
 				
@@ -358,5 +369,41 @@ void Resumen(){
 	<< "Cantidad de Madera: " << civilizaciones[u]->getMadera() << endl
 	<< "Cantidad de Oro: " << civilizaciones[u]->getOro() << endl
 	<< "Cantidad de Alimento: " << civilizaciones[u]->getAlimento() << endl;
+}
+
+void Guerra(){
+	if (civilizaciones.size() == 1){
+		cout << "Solo esta tu civilizacion creada, no hay con quien pelear..." << endl;
+	} else {
+		int opcion;
+		for (int i = 0; i < civilizaciones.size(); i++){
+			cout << (i+1) << ". " << civilizaciones[i]->getNombre() << endl;
+		}
+		cout << "Ingrese opcion: "; cin >> opcion; opcion--;
+		cout << endl;
+		
+		if (opcion == u){
+			cout << "No te podes atacar a vos mismo..." << endl;
+		} else {
+			srand((int) time(0));
+			
+			for (int i = 0; i < civilizaciones[u]->getHabitantes().size(); i++){
+				int random = rand() % civilizaciones[opcion]->getHabitantes().size();
+				
+				Aldeano* aldeano = dynamic_cast<Aldeano*>(civilizaciones[u]->getHabitantes()[i]);
+				
+				if (aldeano != 0){
+					Guerrero* guerrero = dynamic_cast<Guerrero*>(civilizaciones[u]->getHabitantes()[i]);
+					guerrero->Atacar(civilizaciones[opcion]->getHabitantes()[random]);
+					
+				}
+				
+					
+			}
+			
+			
+		}
+		
+	}
 }
 

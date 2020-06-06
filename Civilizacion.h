@@ -38,6 +38,11 @@ class Civilizacion
 		void aumentarEstablos(int);
 		void aumentarHabitantes(int);
 		
+		void agregarAldeano();
+		void agregarJinete();
+		void agregarArquero();
+		void agregarCaballero();
+		
 		vector<Habitante*> getHabitantes();
 		
 	protected:

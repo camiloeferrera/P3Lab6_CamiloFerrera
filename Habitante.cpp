@@ -13,7 +13,7 @@ int Habitante::getValorVida(){
 int Habitante::getHoras(){
 	return this->contadorHoras;
 }
-void Habitante::setValorVida(int valorVida){
+void Habitante::setValorVida(double valorVida){
 	this->valorVida = valorVida;
 }
 

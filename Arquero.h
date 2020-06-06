@@ -9,7 +9,7 @@ class Arquero : public Guerrero
 		Arquero();
 		~Arquero();
 		
-		void Atacar();
+		void Atacar(Habitante*);
 	protected:
 };
 

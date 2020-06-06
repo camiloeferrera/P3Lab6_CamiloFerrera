@@ -8,14 +8,14 @@ class Habitante
 		virtual ~Habitante();
 		
 		int getValorVida();
-		void setValorVida(int);
+		void setValorVida(double);
 		
 		int getHoras();
 		
 		void aumentarHoras();
 		
 	protected:
-		int valorVida = 100;
+		double valorVida = 100;
 		int contadorHoras = 0;
 };
 

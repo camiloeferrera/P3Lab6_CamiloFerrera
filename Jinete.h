@@ -9,7 +9,7 @@ class Jinete : public Guerrero
 		Jinete();
 		~Jinete();
 		
-		void Atacar();
+		void Atacar(Habitante*);
 	protected:
 };
 

@@ -9,7 +9,7 @@ class Guerrero : public Habitante
 		Guerrero();
 		~Guerrero();
 		
-		void Atacar();
+	    virtual void Atacar(Habitante*) = 0;
 		int getValorAtaque();
 	protected:
 		int valorAtaque;

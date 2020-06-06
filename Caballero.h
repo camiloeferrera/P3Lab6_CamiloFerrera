@@ -9,7 +9,7 @@ class Caballero : public Guerrero
 		Caballero();
 		~Caballero();
 		
-		void Atacar();
+		void Atacar(Habitante*);
 	protected:
 };
 

@@ -8,6 +8,6 @@ Arquero::~Arquero()
 {
 }
 
-void Arquero::Atacar(){
-	
+void Arquero::Atacar(Habitante* habitante){
+	habitante->setValorVida(habitante->getValorVida() - (this->valorAtaque + 0.085*this->valorVida));
 }

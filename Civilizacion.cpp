@@ -41,6 +41,7 @@ int Civilizacion::getAlimento(){
 	return this->cantidadAlimento;
 }
 
+
 int Civilizacion::getNumeroHabitantes(){
 	return this->numeroHabitantes;
 }
@@ -87,5 +88,18 @@ void Civilizacion::aumentarEstablos(int cantidad){
 }
 void Civilizacion::aumentarHabitantes(int cantidad){
 	this->numeroHabitantes += cantidad;
+}
+
+void Civilizacion::agregarAldeano(){
+	this->habitantes.push_back(new Aldeano());
+}
+void Civilizacion::agregarJinete(){
+	this->habitantes.push_back(new Jinete());
+}
+void Civilizacion::agregarArquero(){
+	this->habitantes.push_back(new Arquero());
+}
+void Civilizacion::agregarCaballero(){
+	this->habitantes.push_back(new Caballero());
 }
 

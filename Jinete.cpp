@@ -8,8 +8,6 @@ Jinete::~Jinete()
 {
 }
 
-void Jinete::Atacar(){
-	
+void Jinete::Atacar(Habitante* habitante){
+	habitante->setValorVida(habitante->getValorVida() - (this->valorAtaque + 0.065*this->valorVida));
 }
-
-
