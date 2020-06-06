@@ -76,6 +76,10 @@ void Civilizacion::restarOro(int cantidad){
 void Civilizacion::restarAlimento(int cantidad){
 	this->cantidadAlimento -= cantidad;
 }
+void Civilizacion::restarHabitantes(int cantidad){
+	this->numeroHabitantes -= cantidad;
+}
+
 
 void Civilizacion::aumentarCasas(int cantidad){
 	this->numeroCasas += cantidad;

@@ -32,6 +32,7 @@ class Civilizacion
 		void restarMadera(int);
 		void restarOro(int);
 		void restarAlimento(int);
+		void restarHabitantes(int);
 		
 		void aumentarCasas(int);
 		void aumentarCuarteles(int);

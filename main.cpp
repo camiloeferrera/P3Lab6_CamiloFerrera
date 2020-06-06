@@ -120,7 +120,7 @@ void menuJugar(){
 		<< "5. Construir Casa" << endl
 		<< "6. Construir Cuartel" << endl
 		<< "7. Construir Establo" << endl
-		<< "8. Ir a guerra" << endl
+		<< "8. Ir a guerra (Esta malo, quiebra pero podes revisar la funcion)" << endl
 		<< "9. Siguiente Hora" << endl
 		<< "0. Salir" << endl
 		<< "Ingrese opcion: "; cin >> opcion;
@@ -348,9 +348,7 @@ void menuJugar(){
 				break;
 			}
 			case 0:{
-				for (int i = 0; i < pendientes.size(); i++){
-					delete pendientes[i];
-				}
+				pendientes.clear();
 				break;
 			}
 		}
@@ -385,23 +383,23 @@ void Guerra(){
 		if (opcion == u){
 			cout << "No te podes atacar a vos mismo..." << endl;
 		} else {
-			srand((int) time(0));
+			
 			
 			for (int i = 0; i < civilizaciones[u]->getHabitantes().size(); i++){
+				Aldeano* ptr = dynamic_cast<Aldeano*>(civilizaciones[u]->getHabitantes()[i]);
+				
+				srand((int)time(0));
 				int random = rand() % civilizaciones[opcion]->getHabitantes().size();
 				
-				Aldeano* aldeano = dynamic_cast<Aldeano*>(civilizaciones[u]->getHabitantes()[i]);
-				
-				if (aldeano != 0){
-					Guerrero* guerrero = dynamic_cast<Guerrero*>(civilizaciones[u]->getHabitantes()[i]);
-					guerrero->Atacar(civilizaciones[opcion]->getHabitantes()[random]);
+				if (ptr == 0){
+					Guerrero* ptr = dynamic_cast<Guerrero*>(civilizaciones[u]->getHabitantes()[i]);
 					
+					if (ptr != 0){
+						ptr -> Atacar(civilizaciones[opcion]->getHabitantes()[i]);
+					}
 				}
-				
-					
 			}
-			
-			
+				
 		}
 		
 	}
